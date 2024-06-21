@@ -17,7 +17,7 @@ with open('grid.json', 'w') as file:
 polygon_points = [(10, 0), (10, 10), (0, 0)]
 polygon = {'points': polygon_points}
 
-with open('polygon.json', 'w') as file:
+with open('polygon0.json', 'w') as file:
     json.dump(polygon, file)
 
 polygon_points = [(16, 0), (4, 10), (16, 16)]
