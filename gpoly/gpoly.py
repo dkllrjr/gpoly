@@ -75,11 +75,8 @@ def plot_polygons(ax, polygons, center_lon, points=True, labels=True):
 
     lons, lats = [], []
     for i, polygon in enumerate(polygons):
-        lons.append(np.array(polygon['points'])[:,0].tolist())
-        lats.append(np.array(polygon['points'])[:,1].tolist())
-
-    lons = np.array(lons)
-    lats = np.array(lats)
+        lons.append(np.array(polygon['points'])[:,0])
+        lats.append(np.array(polygon['points'])[:,1])
 
     for i, _ in enumerate(lons):
         ax.fill(adjust_for_center_longitude(lons[i] - center_lon), lats[i], transform=ccrs.PlateCarree(center_lon), color=colors(i), alpha=0.7, zorder=30+i/len(lons)) # fourth layer
@@ -396,13 +393,15 @@ def show(ctx, res, grid_res, snap_grid_res, extent, grid_flag, masks_flag, polyg
     tmp_averaged_lon = np.nanmean(np.array(grid['lon']), axis=0)
     center_grid_lon = tmp_averaged_lon[int(len(tmp_averaged_lon)//2)]
 
+    # center_grid_lon = 5
+
     # global plot and colors
     fig, ax, _ = plot_earth(res, grid_res, extent, center_grid_lon) # first layer
     colors = plt.get_cmap('rainbow', len(masks))
 
     # adding grid points
     if grid_flag:
-        ax.scatter(adjust_for_center_longitude(grid_points[:,0]), grid_points[:,1], transform=ccrs.PlateCarree(center_grid_lon), color='k', marker='+', zorder=10) # second layer
+        ax.scatter(adjust_for_center_longitude(grid_points[:,0] - center_grid_lon), grid_points[:,1], transform=ccrs.PlateCarree(center_grid_lon), color='k', marker='+', zorder=10) # second layer
 
     # adding masks
     if masks_flag:

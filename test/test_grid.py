@@ -34,7 +34,7 @@ polygon = {'points': polygon_points}
 with open('polygon2.json', 'w') as file:
     json.dump(polygon, file)
 
-polygon_points = [(-100, -50), (-110, -10), (-50, -20)]
+polygon_points = [(-100, -50), (-110, -10), (-50, -20), (-50, -50)]
 polygon = {'points': polygon_points}
 
 with open('polygon3.json', 'w') as file:
@@ -44,3 +44,4 @@ with open('polygon3.json', 'w') as file:
 
 grid_points = np.array([np.array(grid['lon']).flatten('C'), np.array(grid['lat']).flatten('C')]).transpose()
 mask = measure.points_in_poly(grid_points, polygon_points).reshape(np.array(grid['lon']).shape, order='C').astype(int)
+print(np.array2string(mask, max_line_width=300))
