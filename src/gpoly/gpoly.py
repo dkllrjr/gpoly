@@ -393,8 +393,6 @@ def show(ctx, res, grid_res, snap_grid_res, extent, grid_flag, masks_flag, polyg
     tmp_averaged_lon = np.nanmean(np.array(grid['lon']), axis=0)
     center_grid_lon = tmp_averaged_lon[int(len(tmp_averaged_lon)//2)]
 
-    # center_grid_lon = 5
-
     # global plot and colors
     fig, ax, _ = plot_earth(res, grid_res, extent, center_grid_lon) # first layer
     colors = plt.get_cmap('rainbow', len(masks))

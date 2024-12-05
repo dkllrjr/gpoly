@@ -6,5 +6,5 @@ cd ..
 echo `pwd`
 python3 -m build
 python3 -m twine upload --verbose dist/*
-rm -r *.egg-info
+rm -r src/*.egg-info
 rm -r dist

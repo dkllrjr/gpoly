@@ -1,17 +1,35 @@
 [build-system]
-requires = ["setuptools==68.1.2"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
 
 [project]
 name = "gpoly"
-version = "0.1.3"
+version = "0.1.4"
 description = 'Simple Earth polygon "CLI" tool'
 readme = "README.md"
 authors = [
     {name = "Douglas Keller", email = "dg.kllr.jr@gmail.com"},
     ]
 license = {file = "LICENSE"}
-dynamic = ['dependencies', 'scripts', 'entry-points']
+requires-python = ">=3.12.0"
+dependencies = [
+    "click",
+    "cartopy",
+    "matplotlib",
+    "numpy",
+    "scikit-image",
+    "scipy",
+    ]
+
+
+[project.scripts]
+gpoly = "gpoly.gpoly:gpoly"
+
 
 [project.urls]
 Homepage = "https://github.com/dkllrjr/gpoly"
